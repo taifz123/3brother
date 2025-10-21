@@ -43,7 +43,7 @@
     "@type": "TobaccoStore",
     "name": "Three Brothers Tobacco Shop",
     "image": "https://3brother.com/logo.png",
-    "description": "Premium tobacco shop in Randwick offering cigars, pipe tobacco, cigarettes, and smoking accessories since 1985.",
+    "description": "Premium tobacco shop in Randwick offering cigars, pipe tobacco, cigarettes, and smoking accessories.",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "96 Belmore Road",
@@ -89,7 +89,68 @@
             primary: '#8B4513',
             secondary: '#D2691E',
             accent: '#1a1a1a',
-            gold: '#DAA520'
+            gold: '#DAA520',
+            cream: '#FFF8DC',
+            darkBrown: '#3E2723',
+            lightBrown: '#A0826D'
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            body: ['Inter', 'sans-serif']
+          },
+          animation: {
+            'fade-in': 'fadeIn 1s ease-out',
+            'fade-in-up': 'fadeInUp 0.8s ease-out',
+            'fade-in-down': 'fadeInDown 0.8s ease-out',
+            'slide-in-left': 'slideInLeft 0.8s ease-out',
+            'slide-in-right': 'slideInRight 0.8s ease-out',
+            'scale-in': 'scaleIn 0.6s ease-out',
+            'float': 'float 3s ease-in-out infinite',
+            'glow': 'glow 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2s linear infinite',
+            'bounce-slow': 'bounce 3s infinite'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(40px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            fadeInDown: {
+              '0%': { opacity: '0', transform: 'translateY(-40px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            slideInLeft: {
+              '0%': { opacity: '0', transform: 'translateX(-60px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' }
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(60px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' }
+            },
+            scaleIn: {
+              '0%': { opacity: '0', transform: 'scale(0.9)' },
+              '100%': { opacity: '1', transform: 'scale(1)' }
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' }
+            },
+            glow: {
+              '0%, 100%': { boxShadow: '0 0 20px rgba(218, 165, 32, 0.5)' },
+              '50%': { boxShadow: '0 0 40px rgba(218, 165, 32, 0.8)' }
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-1000px 0' },
+              '100%': { backgroundPosition: '1000px 0' }
+            }
+          },
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
           }
         }
       }
@@ -97,35 +158,117 @@
   </script>
   
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
     
-    * { scroll-behavior: smooth; }
+    * {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
     
     body {
       font-family: 'Inter', sans-serif;
-      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
     
-    .heading-font {
-      font-family: 'Playfair Display', serif;
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 12px;
     }
     
+    ::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #8B4513 0%, #DAA520 100%);
+      border-radius: 6px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #DAA520 0%, #8B4513 100%);
+    }
+    
+    /* Hero Background with Animated Gradient */
     .hero-gradient {
-      background: linear-gradient(135deg, rgba(139, 69, 19, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
+      background: linear-gradient(135deg, 
+        rgba(139, 69, 19, 0.95) 0%, 
+        rgba(62, 39, 35, 0.95) 50%,
+        rgba(26, 26, 26, 0.98) 100%);
+      position: relative;
+      overflow: hidden;
     }
     
-    .card-hover {
-      transition: all 0.3s ease;
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(218, 165, 32, 0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
     }
     
-    .card-hover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
     
+    /* Glassmorphism Effect */
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    }
+    
+    .glass-dark {
+      background: rgba(26, 26, 26, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Premium Card with 3D Effect */
+    .premium-card {
+      background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .premium-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+    
+    .premium-card:hover::before {
+      left: 100%;
+    }
+    
+    .premium-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 
+        0 30px 80px rgba(139, 69, 19, 0.25),
+        0 0 0 1px rgba(218, 165, 32, 0.3) inset;
+    }
+    
+    /* Animated Navigation Link */
     .nav-link {
       position: relative;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
+      padding-bottom: 4px;
     }
     
     .nav-link::after {
@@ -133,9 +276,9 @@
       position: absolute;
       width: 0;
       height: 2px;
-      bottom: -4px;
+      bottom: 0;
       left: 50%;
-      background: #8B4513;
+      background: linear-gradient(90deg, #8B4513, #DAA520);
       transition: all 0.3s ease;
       transform: translateX(-50%);
     }
@@ -144,13 +287,218 @@
       width: 100%;
     }
     
-    .fade-in {
-      animation: fadeIn 0.8s ease-in;
+    /* Gradient Text */
+    .gradient-text {
+      background: linear-gradient(135deg, #DAA520 0%, #8B4513 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* Animated Button */
+    .btn-premium {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+    }
+    
+    .btn-premium::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .btn-premium:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .btn-premium:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
+    }
+    
+    /* Icon Container with Glow */
+    .icon-glow {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .icon-glow::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(218, 165, 32, 0.4) 0%, transparent 70%);
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.3s ease;
+      border-radius: 50%;
+    }
+    
+    .icon-glow:hover::after {
+      transform: translate(-50%, -50%) scale(1.5);
+    }
+    
+    /* Parallax Section */
+    .parallax {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    
+    /* Animated Underline */
+    .animated-underline {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .animated-underline::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      bottom: -8px;
+      left: 0;
+      background: linear-gradient(90deg, #DAA520, #8B4513);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    
+    .animated-underline:hover::after {
+      transform: scaleX(1);
+    }
+    
+    /* Product Card Hover Effect */
+    .product-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    
+    .product-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(218, 165, 32, 0.1) 0%, rgba(139, 69, 19, 0.1) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: inherit;
+    }
+    
+    .product-card:hover::after {
+      opacity: 1;
+    }
+    
+    /* Scroll Progress Bar */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #8B4513, #DAA520);
+      z-index: 9999;
+      transition: width 0.1s ease;
+    }
+    
+    /* Section Divider */
+    .section-divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #DAA520, transparent);
+      margin: 4rem 0;
+    }
+    
+    /* Animated Background Pattern */
+    .pattern-bg {
+      background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(139, 69, 19, 0.03) 35px, rgba(139, 69, 19, 0.03) 70px);
+    }
+    
+    /* Floating Animation for Icons */
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    /* Shimmer Effect */
+    .shimmer {
+      background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        rgba(255, 255, 255, 0) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 2s linear infinite;
+    }
+    
+    /* Custom Badge */
+    .badge-premium {
+      background: linear-gradient(135deg, #DAA520 0%, #8B4513 100%);
+      box-shadow: 0 4px 15px rgba(218, 165, 32, 0.4);
+      animation: glow 2s ease-in-out infinite;
+    }
+    
+    /* Intersection Observer Animation Classes */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+    
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 0.8s ease-out;
+    }
+    
+    .reveal-left.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 0.8s ease-out;
+    }
+    
+    .reveal-right.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    /* Stagger Animation Delay */
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    .stagger-4 { transition-delay: 0.4s; }
+    .stagger-5 { transition-delay: 0.5s; }
+    .stagger-6 { transition-delay: 0.6s; }
+    
+    /* Mobile Menu Animation */
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+    
+    .mobile-menu.active {
+      transform: translateX(0);
     }
   </style>
 <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
@@ -158,290 +506,475 @@
 
 <body class="bg-gray-50">
   
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+  
   <!-- Header -->
-  <header class="fixed w-full top-0 z-50 bg-white shadow-md">
+  <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300" id="header">
     <div class="container mx-auto px-4 sm:px-6 py-4">
       <div class="flex justify-between items-center">
-        <div class="flex items-center space-x-3">
-          <img src="logo.png" alt="Three Brothers Tobacco Shop Logo - Premium Cigars Randwick" class="w-12 h-12 rounded-full object-cover" width="48" height="48">
+        <div class="flex items-center space-x-3 animate-fade-in">
+          <img src="logo.png" alt="Three Brothers Tobacco Shop Logo - Premium Cigars Randwick" class="w-12 h-12 rounded-full object-cover shadow-lg ring-2 ring-gold/30" width="48" height="48">
           <div>
-            <h1 class="heading-font text-xl sm:text-2xl font-bold text-gray-900">Three Brothers Tobacco</h1>
-            <p class="text-xs text-gray-600 hidden sm:block">Premium Tobacco Since 1985</p>
+            <h1 class="font-display text-xl sm:text-2xl font-bold text-gray-900">Three Brothers Tobacco</h1>
+            <p class="text-xs text-gray-600 hidden sm:block">Premium Quality & Selection</p>
           </div>
         </div>
-        <nav class="hidden md:flex space-x-6">
+        
+        <nav class="hidden lg:flex space-x-8 animate-fade-in-down">
           <a href="#home" class="nav-link text-gray-700 hover:text-primary font-medium">Home</a>
           <a href="#products" class="nav-link text-gray-700 hover:text-primary font-medium">Products</a>
           <a href="#about" class="nav-link text-gray-700 hover:text-primary font-medium">About</a>
           <a href="#location" class="nav-link text-gray-700 hover:text-primary font-medium">Location</a>
           <a href="#contact" class="nav-link text-gray-700 hover:text-primary font-medium">Contact</a>
         </nav>
-        <a href="tel:+61405775232" class="hidden sm:block bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition">
-          Call Now
+        
+        <a href="tel:+61405775232" class="hidden sm:flex items-center space-x-2 bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full font-semibold btn-premium animate-fade-in">
+          <i data-feather="phone" class="w-4 h-4"></i>
+          <span>Call Now</span>
         </a>
+        
+        <button class="lg:hidden p-2 text-gray-700 hover:text-primary transition" id="mobileMenuBtn">
+          <i data-feather="menu" class="w-6 h-6"></i>
+        </button>
       </div>
     </div>
   </header>
 
+  <!-- Mobile Menu -->
+  <div class="mobile-menu fixed top-0 right-0 w-full h-full bg-gradient-to-br from-darkBrown to-accent z-40 lg:hidden" id="mobileMenu">
+    <div class="flex flex-col items-center justify-center h-full space-y-8 text-white">
+      <button class="absolute top-6 right-6 text-white" id="closeMobileMenu">
+        <i data-feather="x" class="w-8 h-8"></i>
+      </button>
+      <a href="#home" class="text-2xl font-display hover:text-gold transition mobile-menu-link">Home</a>
+      <a href="#products" class="text-2xl font-display hover:text-gold transition mobile-menu-link">Products</a>
+      <a href="#about" class="text-2xl font-display hover:text-gold transition mobile-menu-link">About</a>
+      <a href="#location" class="text-2xl font-display hover:text-gold transition mobile-menu-link">Location</a>
+      <a href="#contact" class="text-2xl font-display hover:text-gold transition mobile-menu-link">Contact</a>
+      <a href="tel:+61405775232" class="bg-gold text-darkBrown px-8 py-4 rounded-full font-semibold text-xl">
+        Call 0405 775 232
+      </a>
+    </div>
+  </div>
+
   <!-- Hero Section -->
-  <section id="home" class="hero-gradient min-h-screen flex items-center justify-center pt-20">
-    <div class="container mx-auto px-4 sm:px-6 text-center text-white">
-      <div class="max-w-4xl mx-auto fade-in">
-        <h2 class="heading-font text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-          Randwick's Premier<br>
-          <span class="text-gold">Tobacco Shop</span>
+  <section id="home" class="hero-gradient min-h-screen flex items-center justify-center pt-20 relative">
+    <!-- Animated Particles Background -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute w-96 h-96 bg-gold/10 rounded-full blur-3xl -top-48 -left-48 animate-float"></div>
+      <div class="absolute w-96 h-96 bg-primary/10 rounded-full blur-3xl -bottom-48 -right-48 animate-float" style="animation-delay: 1s;"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 sm:px-6 text-center relative z-10">
+      <div class="max-w-5xl mx-auto">
+        <!-- Badge -->
+        <div class="inline-flex items-center space-x-2 badge-premium text-white px-6 py-2 rounded-full mb-8 animate-fade-in-down">
+          <i data-feather="award" class="w-4 h-4"></i>
+          <span class="text-sm font-semibold">Randwick's Premier Tobacco Shop</span>
+        </div>
+        
+        <h2 class="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight animate-fade-in-up">
+          Premium Tobacco<br>
+          <span class="gradient-text bg-gradient-to-r from-gold via-yellow-300 to-gold bg-clip-text text-transparent">
+            & Fine Cigars
+          </span>
         </h2>
-        <p class="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
-          Premium cigars, pipe tobacco, cigarettes, and smoking accessories in the heart of Randwick, Sydney NSW
+        
+        <p class="text-xl sm:text-2xl md:text-3xl text-gray-200 mb-12 leading-relaxed font-light animate-fade-in-up max-w-3xl mx-auto" style="animation-delay: 0.2s;">
+          Curated selection of premium cigars, artisan pipe tobacco, and luxury smoking accessories
         </p>
         
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-          <a href="#products" class="bg-gold text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-500 transition text-lg">
-            Browse Products
+        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 animate-fade-in-up" style="animation-delay: 0.4s;">
+          <a href="#products" class="group relative bg-gold text-darkBrown px-10 py-5 rounded-full font-bold text-lg btn-premium hover:bg-yellow-400 transition-all flex items-center space-x-3">
+            <span>Explore Collection</span>
+            <i data-feather="arrow-right" class="w-5 h-5 group-hover:translate-x-2 transition-transform"></i>
           </a>
-          <a href="tel:+61405775232" class="bg-white text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition text-lg">
-            <i data-feather="phone" class="w-5 h-5 inline mr-2"></i>
-            0405 775 232
+          <a href="tel:+61405775232" class="group glass text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white/20 transition-all flex items-center space-x-3">
+            <i data-feather="phone" class="w-5 h-5"></i>
+            <span>0405 775 232</span>
           </a>
         </div>
         
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
-          <div class="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-            <i data-feather="map-pin" class="w-6 h-6 mx-auto mb-2 text-gold"></i>
-            <p class="font-semibold">96 Belmore Road</p>
+        <!-- Info Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto animate-fade-in-up" style="animation-delay: 0.6s;">
+          <div class="glass rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 group">
+            <div class="icon-glow w-14 h-14 bg-gold/20 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+              <i data-feather="map-pin" class="w-7 h-7 text-gold"></i>
+            </div>
+            <p class="font-bold text-white text-lg mb-1">96 Belmore Road</p>
             <p class="text-sm text-gray-300">Randwick NSW 2031</p>
           </div>
-          <div class="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-            <i data-feather="clock" class="w-6 h-6 mx-auto mb-2 text-gold"></i>
-            <p class="font-semibold">Open Daily</p>
+          
+          <div class="glass rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 group">
+            <div class="icon-glow w-14 h-14 bg-gold/20 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+              <i data-feather="clock" class="w-7 h-7 text-gold"></i>
+            </div>
+            <p class="font-bold text-white text-lg mb-1">Open Daily</p>
             <p class="text-sm text-gray-300">8:00 AM - 10:30 PM</p>
           </div>
-          <div class="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-            <i data-feather="award" class="w-6 h-6 mx-auto mb-2 text-gold"></i>
-            <p class="font-semibold">40+ Years</p>
-            <p class="text-sm text-gray-300">Serving Sydney</p>
+          
+          <div class="glass rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 group">
+            <div class="icon-glow w-14 h-14 bg-gold/20 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+              <i data-feather="star" class="w-7 h-7 text-gold"></i>
+            </div>
+            <p class="font-bold text-white text-lg mb-1">Premium Quality</p>
+            <p class="text-sm text-gray-300">Curated Selection</p>
           </div>
         </div>
+      </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
+      <div class="flex flex-col items-center space-y-2 text-white/70">
+        <span class="text-sm font-medium">Scroll to explore</span>
+        <i data-feather="chevron-down" class="w-6 h-6"></i>
       </div>
     </div>
   </section>
 
   <!-- Products Section -->
-  <section id="products" class="py-20 bg-white">
+  <section id="products" class="py-24 bg-white pattern-bg relative overflow-hidden">
+    <!-- Decorative Elements -->
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
+    
     <div class="container mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="heading-font text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-          Our Premium Selection
+      <div class="text-center mb-20 reveal">
+        <span class="inline-block text-primary font-semibold text-sm uppercase tracking-wider mb-4">Our Collection</span>
+        <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+          Premium <span class="gradient-text">Selection</span>
         </h2>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-          Discover our curated collection of premium tobacco products and smoking accessories
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Discover our carefully curated collection of the finest tobacco products and smoking accessories
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
         <!-- Premium Cigars -->
-        <article class="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg p-8 card-hover border border-gray-100">
-          <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-6">
-            <i data-feather="package" class="w-8 h-8 text-white"></i>
+        <article class="premium-card product-card rounded-3xl p-8 reveal stagger-1">
+          <div class="relative mb-6">
+            <div class="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto icon-glow shadow-xl">
+              <i data-feather="package" class="w-10 h-10 text-white"></i>
+            </div>
+            <div class="absolute -top-2 -right-2 badge-premium text-white text-xs px-3 py-1 rounded-full font-bold">
+              Popular
+            </div>
           </div>
-          <h3 class="heading-font text-2xl font-bold text-gray-900 mb-4">Premium Cigars</h3>
-          <p class="text-gray-600 mb-6 leading-relaxed">
-            Handpicked selection of premium cigars from renowned brands worldwide. Cuban cigars, Dominican cigars, Nicaraguan cigars, and more. Perfect for connoisseurs and beginners alike.
+          
+          <h3 class="font-display text-2xl font-bold text-gray-900 mb-4 text-center">Premium Cigars</h3>
+          
+          <p class="text-gray-600 mb-6 leading-relaxed text-center">
+            Handpicked selection of premium cigars from renowned brands worldwide. Cuban, Dominican, and Nicaraguan cigars for every palate.
           </p>
-          <ul class="space-y-2 text-gray-700">
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>Cuban & Dominican Cigars</span>
-            </li>
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>Nicaraguan & Honduran Cigars</span>
-            </li>
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>Limited Edition Collections</span>
-            </li>
-          </ul>
+          
+          <div class="space-y-3 mb-6">
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">Cuban & Dominican Cigars</span>
+            </div>
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">Nicaraguan & Honduran Cigars</span>
+            </div>
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">Limited Edition Collections</span>
+            </div>
+          </div>
+          
+          <div class="pt-4 border-t border-gray-200">
+            <div class="flex items-center justify-center space-x-2 text-primary">
+              <i data-feather="star" class="w-4 h-4 fill-current"></i>
+              <span class="text-sm font-semibold">Premium Quality Guaranteed</span>
+            </div>
+          </div>
         </article>
 
         <!-- Pipe Tobacco -->
-        <article class="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg p-8 card-hover border border-gray-100">
-          <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-6">
-            <i data-feather="wind" class="w-8 h-8 text-white"></i>
+        <article class="premium-card product-card rounded-3xl p-8 reveal stagger-2">
+          <div class="relative mb-6">
+            <div class="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto icon-glow shadow-xl">
+              <i data-feather="wind" class="w-10 h-10 text-white"></i>
+            </div>
           </div>
-          <h3 class="heading-font text-2xl font-bold text-gray-900 mb-4">Pipe Tobacco</h3>
-          <p class="text-gray-600 mb-6 leading-relaxed">
-            Artisan pipe tobacco blends for the discerning pipe smoker. English blends, aromatic tobacco, Virginia tobacco, and specialty blends. Premium quality guaranteed.
+          
+          <h3 class="font-display text-2xl font-bold text-gray-900 mb-4 text-center">Pipe Tobacco</h3>
+          
+          <p class="text-gray-600 mb-6 leading-relaxed text-center">
+            Artisan pipe tobacco blends for the discerning pipe smoker. English blends, aromatic tobacco, and specialty house blends.
           </p>
-          <ul class="space-y-2 text-gray-700">
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>English & Aromatic Blends</span>
-            </li>
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>Virginia & Burley Tobacco</span>
-            </li>
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>Specialty House Blends</span>
-            </li>
-          </ul>
+          
+          <div class="space-y-3 mb-6">
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">English & Aromatic Blends</span>
+            </div>
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">Virginia & Burley Tobacco</span>
+            </div>
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">Specialty House Blends</span>
+            </div>
+          </div>
+          
+          <div class="pt-4 border-t border-gray-200">
+            <div class="flex items-center justify-center space-x-2 text-primary">
+              <i data-feather="award" class="w-4 h-4"></i>
+              <span class="text-sm font-semibold">Artisan Quality</span>
+            </div>
+          </div>
         </article>
 
         <!-- Cigarettes -->
-        <article class="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg p-8 card-hover border border-gray-100">
-          <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-6">
-            <i data-feather="box" class="w-8 h-8 text-white"></i>
+        <article class="premium-card product-card rounded-3xl p-8 reveal stagger-3">
+          <div class="relative mb-6">
+            <div class="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto icon-glow shadow-xl">
+              <i data-feather="box" class="w-10 h-10 text-white"></i>
+            </div>
           </div>
-          <h3 class="heading-font text-2xl font-bold text-gray-900 mb-4">Cigarettes</h3>
-          <p class="text-gray-600 mb-6 leading-relaxed">
-            Wide selection of cigarette brands at competitive prices. Premium cigarettes, budget cigarettes, menthol cigarettes, and specialty brands. All major brands in stock.
+          
+          <h3 class="font-display text-2xl font-bold text-gray-900 mb-4 text-center">Cigarettes</h3>
+          
+          <p class="text-gray-600 mb-6 leading-relaxed text-center">
+            Wide selection of cigarette brands at competitive prices. All major brands available with regular and menthol options.
           </p>
-          <ul class="space-y-2 text-gray-700">
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>All Major Brands Available</span>
-            </li>
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>Regular & Menthol Options</span>
-            </li>
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>Competitive Pricing</span>
-            </li>
-          </ul>
+          
+          <div class="space-y-3 mb-6">
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">All Major Brands Available</span>
+            </div>
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">Regular & Menthol Options</span>
+            </div>
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">Competitive Pricing</span>
+            </div>
+          </div>
+          
+          <div class="pt-4 border-t border-gray-200">
+            <div class="flex items-center justify-center space-x-2 text-primary">
+              <i data-feather="dollar-sign" class="w-4 h-4"></i>
+              <span class="text-sm font-semibold">Best Prices</span>
+            </div>
+          </div>
         </article>
 
         <!-- Smoking Accessories -->
-        <article class="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg p-8 card-hover border border-gray-100">
-          <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-6">
-            <i data-feather="tool" class="w-8 h-8 text-white"></i>
+        <article class="premium-card product-card rounded-3xl p-8 reveal stagger-4">
+          <div class="relative mb-6">
+            <div class="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto icon-glow shadow-xl">
+              <i data-feather="tool" class="w-10 h-10 text-white"></i>
+            </div>
           </div>
-          <h3 class="heading-font text-2xl font-bold text-gray-900 mb-4">Smoking Accessories</h3>
-          <p class="text-gray-600 mb-6 leading-relaxed">
-            Complete range of smoking accessories including cigar cutters, lighters, humidors, pipes, ashtrays, and more. Quality accessories for every smoker.
+          
+          <h3 class="font-display text-2xl font-bold text-gray-900 mb-4 text-center">Smoking Accessories</h3>
+          
+          <p class="text-gray-600 mb-6 leading-relaxed text-center">
+            Complete range of premium smoking accessories including cigar cutters, lighters, humidors, pipes, and ashtrays.
           </p>
-          <ul class="space-y-2 text-gray-700">
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>Cigar Cutters & Lighters</span>
-            </li>
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>Humidors & Storage</span>
-            </li>
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>Pipes & Ashtrays</span>
-            </li>
-          </ul>
+          
+          <div class="space-y-3 mb-6">
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">Cigar Cutters & Lighters</span>
+            </div>
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">Humidors & Storage Solutions</span>
+            </div>
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">Premium Pipes & Ashtrays</span>
+            </div>
+          </div>
+          
+          <div class="pt-4 border-t border-gray-200">
+            <div class="flex items-center justify-center space-x-2 text-primary">
+              <i data-feather="shopping-bag" class="w-4 h-4"></i>
+              <span class="text-sm font-semibold">Complete Collection</span>
+            </div>
+          </div>
         </article>
 
         <!-- Rolling Papers -->
-        <article class="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg p-8 card-hover border border-gray-100">
-          <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-6">
-            <i data-feather="file-text" class="w-8 h-8 text-white"></i>
+        <article class="premium-card product-card rounded-3xl p-8 reveal stagger-5">
+          <div class="relative mb-6">
+            <div class="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto icon-glow shadow-xl">
+              <i data-feather="file-text" class="w-10 h-10 text-white"></i>
+            </div>
           </div>
-          <h3 class="heading-font text-2xl font-bold text-gray-900 mb-4">Rolling Papers & Filters</h3>
-          <p class="text-gray-600 mb-6 leading-relaxed">
-            Premium rolling papers, filters, and rolling accessories. All sizes and brands available. Perfect for roll-your-own tobacco enthusiasts.
+          
+          <h3 class="font-display text-2xl font-bold text-gray-900 mb-4 text-center">Rolling Papers & Filters</h3>
+          
+          <p class="text-gray-600 mb-6 leading-relaxed text-center">
+            Premium rolling papers, filters, and rolling accessories. All sizes and brands for roll-your-own enthusiasts.
           </p>
-          <ul class="space-y-2 text-gray-700">
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>Premium Rolling Papers</span>
-            </li>
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>Filters & Tips</span>
-            </li>
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>Rolling Machines</span>
-            </li>
-          </ul>
+          
+          <div class="space-y-3 mb-6">
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">Premium Rolling Papers</span>
+            </div>
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">Quality Filters & Tips</span>
+            </div>
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">Rolling Machines & Tools</span>
+            </div>
+          </div>
+          
+          <div class="pt-4 border-t border-gray-200">
+            <div class="flex items-center justify-center space-x-2 text-primary">
+              <i data-feather="layers" class="w-4 h-4"></i>
+              <span class="text-sm font-semibold">Wide Selection</span>
+            </div>
+          </div>
         </article>
 
-        <!-- Specialty Items -->
-        <article class="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg p-8 card-hover border border-gray-100">
-          <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-6">
-            <i data-feather="star" class="w-8 h-8 text-white"></i>
+        <!-- Specialty Products -->
+        <article class="premium-card product-card rounded-3xl p-8 reveal stagger-6">
+          <div class="relative mb-6">
+            <div class="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto icon-glow shadow-xl">
+              <i data-feather="gift" class="w-10 h-10 text-white"></i>
+            </div>
+            <div class="absolute -top-2 -right-2 badge-premium text-white text-xs px-3 py-1 rounded-full font-bold">
+              Exclusive
+            </div>
           </div>
-          <h3 class="heading-font text-2xl font-bold text-gray-900 mb-4">Specialty Products</h3>
-          <p class="text-gray-600 mb-6 leading-relaxed">
-            Unique tobacco products and collectibles. Limited edition cigars, vintage pipes, rare tobacco blends, and gift sets. Perfect for collectors and gift-giving.
+          
+          <h3 class="font-display text-2xl font-bold text-gray-900 mb-4 text-center">Specialty Products</h3>
+          
+          <p class="text-gray-600 mb-6 leading-relaxed text-center">
+            Unique tobacco products and collectibles. Limited edition cigars, vintage pipes, and curated gift sets.
           </p>
-          <ul class="space-y-2 text-gray-700">
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>Limited Edition Items</span>
-            </li>
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>Gift Sets & Collections</span>
-            </li>
-            <li class="flex items-center">
-              <i data-feather="check" class="w-5 h-5 text-gold mr-2"></i>
-              <span>Collectible Pieces</span>
-            </li>
-          </ul>
+          
+          <div class="space-y-3 mb-6">
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">Limited Edition Items</span>
+            </div>
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">Curated Gift Sets</span>
+            </div>
+            <div class="flex items-center space-x-3 text-gray-700">
+              <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-feather="check" class="w-4 h-4 text-gold"></i>
+              </div>
+              <span class="text-sm">Collectible Pieces</span>
+            </div>
+          </div>
+          
+          <div class="pt-4 border-t border-gray-200">
+            <div class="flex items-center justify-center space-x-2 text-primary">
+              <i data-feather="star" class="w-4 h-4 fill-current"></i>
+              <span class="text-sm font-semibold">Rare & Unique</span>
+            </div>
+          </div>
         </article>
       </div>
     </div>
   </section>
 
   <!-- Why Choose Us Section -->
-  <section class="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-    <div class="container mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="heading-font text-4xl sm:text-5xl font-bold mb-4">
-          Why Choose Three Brothers Tobacco?
+  <section class="py-24 bg-gradient-to-br from-darkBrown via-accent to-darkBrown text-white relative overflow-hidden">
+    <!-- Animated Background -->
+    <div class="absolute inset-0">
+      <div class="absolute w-96 h-96 bg-gold/5 rounded-full blur-3xl top-0 right-0 animate-float"></div>
+      <div class="absolute w-96 h-96 bg-primary/5 rounded-full blur-3xl bottom-0 left-0 animate-float" style="animation-delay: 1.5s;"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 sm:px-6 relative z-10">
+      <div class="text-center mb-20 reveal">
+        <span class="inline-block text-gold font-semibold text-sm uppercase tracking-wider mb-4">Why Choose Us</span>
+        <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+          The Three Brothers <span class="text-gold">Difference</span>
         </h2>
-        <p class="text-xl text-gray-300 max-w-2xl mx-auto">
-          Your trusted tobacco shop in Randwick for over 40 years
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          Your trusted destination for premium tobacco products in Randwick
         </p>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="text-center">
-          <div class="w-20 h-20 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
-            <i data-feather="award" class="w-10 h-10 text-gray-900"></i>
+        <div class="text-center reveal-left stagger-1">
+          <div class="w-24 h-24 bg-gradient-to-br from-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 icon-glow shadow-2xl transform hover:scale-110 transition-transform duration-300">
+            <i data-feather="shield" class="w-12 h-12 text-darkBrown"></i>
           </div>
-          <h3 class="heading-font text-2xl font-bold mb-3">40+ Years Experience</h3>
-          <p class="text-gray-300">
-            Serving Sydney's tobacco community since 1985 with expertise and dedication
+          <h3 class="font-display text-2xl font-bold mb-4">Authentic Products</h3>
+          <p class="text-gray-300 leading-relaxed">
+            100% genuine tobacco products from authorized distributors and manufacturers worldwide
           </p>
         </div>
         
-        <div class="text-center">
-          <div class="w-20 h-20 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
-            <i data-feather="shield" class="w-10 h-10 text-gray-900"></i>
+        <div class="text-center reveal-left stagger-2">
+          <div class="w-24 h-24 bg-gradient-to-br from-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 icon-glow shadow-2xl transform hover:scale-110 transition-transform duration-300">
+            <i data-feather="star" class="w-12 h-12 text-darkBrown"></i>
           </div>
-          <h3 class="heading-font text-2xl font-bold mb-3">Authentic Products</h3>
-          <p class="text-gray-300">
-            100% genuine tobacco products from authorized distributors and manufacturers
+          <h3 class="font-display text-2xl font-bold mb-4">Premium Quality</h3>
+          <p class="text-gray-300 leading-relaxed">
+            Carefully curated selection of the finest cigars, tobacco, and accessories for discerning customers
           </p>
         </div>
         
-        <div class="text-center">
-          <div class="w-20 h-20 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
-            <i data-feather="dollar-sign" class="w-10 h-10 text-gray-900"></i>
+        <div class="text-center reveal-left stagger-3">
+          <div class="w-24 h-24 bg-gradient-to-br from-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 icon-glow shadow-2xl transform hover:scale-110 transition-transform duration-300">
+            <i data-feather="dollar-sign" class="w-12 h-12 text-darkBrown"></i>
           </div>
-          <h3 class="heading-font text-2xl font-bold mb-3">Competitive Prices</h3>
-          <p class="text-gray-300">
-            Best prices in Randwick on premium cigars, tobacco, and smoking accessories
+          <h3 class="font-display text-2xl font-bold mb-4">Competitive Prices</h3>
+          <p class="text-gray-300 leading-relaxed">
+            Best prices in Randwick on premium cigars, tobacco products, and smoking accessories
           </p>
         </div>
         
-        <div class="text-center">
-          <div class="w-20 h-20 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
-            <i data-feather="users" class="w-10 h-10 text-gray-900"></i>
+        <div class="text-center reveal-left stagger-4">
+          <div class="w-24 h-24 bg-gradient-to-br from-gold to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 icon-glow shadow-2xl transform hover:scale-110 transition-transform duration-300">
+            <i data-feather="users" class="w-12 h-12 text-darkBrown"></i>
           </div>
-          <h3 class="heading-font text-2xl font-bold mb-3">Expert Advice</h3>
-          <p class="text-gray-300">
-            Knowledgeable staff ready to help you find the perfect tobacco products
+          <h3 class="font-display text-2xl font-bold mb-4">Expert Guidance</h3>
+          <p class="text-gray-300 leading-relaxed">
+            Knowledgeable staff ready to help you find the perfect tobacco products for your preferences
           </p>
         </div>
       </div>
@@ -449,110 +982,157 @@
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-20 bg-white">
-    <div class="container mx-auto px-4 sm:px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <img src="front.png" alt="Three Brothers Tobacco Shop Interior - Randwick Sydney" class="rounded-2xl shadow-2xl w-full h-auto" loading="lazy">
+  <section id="about" class="py-24 bg-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-cream/30 to-transparent"></div>
+    
+    <div class="container mx-auto px-4 sm:px-6 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal-left">
+          <div class="relative">
+            <div class="absolute -inset-4 bg-gradient-to-r from-primary/20 to-gold/20 rounded-3xl blur-2xl"></div>
+            <img src="front.png" alt="Three Brothers Tobacco Shop Interior - Randwick Sydney" class="relative rounded-3xl shadow-2xl w-full h-auto transform hover:scale-105 transition-transform duration-500" loading="lazy">
+            
+            <!-- Floating Badge -->
+            <div class="absolute -bottom-6 -right-6 glass-dark text-white p-6 rounded-2xl shadow-2xl">
+              <div class="flex items-center space-x-4">
+                <div class="w-16 h-16 bg-gold rounded-xl flex items-center justify-center">
+                  <i data-feather="award" class="w-8 h-8 text-darkBrown"></i>
+                </div>
+                <div>
+                  <div class="text-3xl font-bold">4.8★</div>
+                  <div class="text-sm text-gray-300">Customer Rating</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <h2 class="heading-font text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-            About Three Brothers Tobacco Shop
+        
+        <div class="reveal-right">
+          <span class="inline-block text-primary font-semibold text-sm uppercase tracking-wider mb-4">About Us</span>
+          <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            Your Trusted <span class="gradient-text">Tobacco Shop</span>
           </h2>
-          <div class="space-y-4 text-gray-700 text-lg leading-relaxed">
+          
+          <div class="space-y-6 text-gray-700 text-lg leading-relaxed mb-8">
             <p>
-              <strong>Three Brothers Tobacco Shop</strong> has been Randwick's premier destination for premium tobacco products since 1985. Located in the heart of Randwick at 96 Belmore Road, we've been serving Sydney's tobacco enthusiasts for over 40 years.
+              <strong>Three Brothers Tobacco Shop</strong> is Randwick's premier destination for premium tobacco products. Located in the heart of Randwick at 96 Belmore Road, we specialize in offering the finest selection of cigars, pipe tobacco, and smoking accessories.
             </p>
             <p>
-              Our tobacco store specializes in premium cigars, pipe tobacco, cigarettes, and a comprehensive range of smoking accessories. Whether you're a seasoned cigar aficionado or new to pipe smoking, our knowledgeable staff is here to guide you through our extensive selection.
+              Our tobacco store features an extensive collection of premium cigars including Cuban cigars, Dominican cigars, and Nicaraguan cigars. We also carry a wide range of pipe tobacco blends, from English blends to aromatic tobacco, carefully selected for quality and flavor.
             </p>
             <p>
-              We pride ourselves on offering authentic products from the world's finest tobacco manufacturers. Our cigar collection includes Cuban cigars, Dominican cigars, Nicaraguan cigars, and limited edition releases. Our pipe tobacco selection features English blends, aromatic tobacco, and specialty house blends.
+              Whether you're a seasoned cigar aficionado or new to pipe smoking, our knowledgeable staff is here to guide you through our curated selection. We pride ourselves on offering authentic products, competitive pricing, and exceptional customer service.
             </p>
             <p>
-              As a family-owned tobacco shop in Randwick, we understand the importance of quality, authenticity, and customer service. Visit us today and experience why we're Sydney's most trusted tobacco dealer.
+              Visit us today and discover why we're Sydney's most trusted tobacco dealer. Experience the difference that quality, expertise, and dedication make.
             </p>
           </div>
           
-          <div class="mt-8 grid grid-cols-2 gap-4">
-            <div class="bg-gradient-to-br from-primary to-secondary text-white p-6 rounded-xl">
-              <div class="text-4xl font-bold mb-2">40+</div>
-              <div class="text-sm">Years in Business</div>
+          <div class="grid grid-cols-2 gap-6 mb-8">
+            <div class="bg-gradient-to-br from-primary to-secondary text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition-transform">
+              <div class="text-5xl font-bold mb-2">1000+</div>
+              <div class="text-sm opacity-90">Products Available</div>
             </div>
-            <div class="bg-gradient-to-br from-primary to-secondary text-white p-6 rounded-xl">
-              <div class="text-4xl font-bold mb-2">1000+</div>
-              <div class="text-sm">Products Available</div>
+            <div class="bg-gradient-to-br from-gold to-yellow-600 text-darkBrown p-6 rounded-2xl shadow-lg transform hover:scale-105 transition-transform">
+              <div class="text-5xl font-bold mb-2">100%</div>
+              <div class="text-sm opacity-90">Authentic Products</div>
             </div>
           </div>
+          
+          <a href="#contact" class="inline-flex items-center space-x-3 bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-full font-bold text-lg btn-premium">
+            <span>Visit Our Store</span>
+            <i data-feather="arrow-right" class="w-5 h-5"></i>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Location Section -->
-  <section id="location" class="py-20 bg-gray-50">
+  <section id="location" class="py-24 bg-gradient-to-br from-gray-50 to-cream">
     <div class="container mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="heading-font text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-          Visit Our Randwick Store
+      <div class="text-center mb-20 reveal">
+        <span class="inline-block text-primary font-semibold text-sm uppercase tracking-wider mb-4">Find Us</span>
+        <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+          Visit Our <span class="gradient-text">Randwick Store</span>
         </h2>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-          Conveniently located in Randwick, Sydney NSW - Easy parking and public transport access
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Conveniently located in Randwick with easy parking and public transport access
         </p>
       </div>
       
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
-            <h3 class="heading-font text-2xl font-bold text-gray-900 mb-6 flex items-center">
-              <i data-feather="map-pin" class="w-6 h-6 text-primary mr-3"></i>
-              Store Location
-            </h3>
+        <div class="space-y-6 reveal-left">
+          <div class="premium-card rounded-3xl p-8 shadow-xl">
+            <div class="flex items-center space-x-4 mb-6">
+              <div class="w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center icon-glow">
+                <i data-feather="map-pin" class="w-7 h-7 text-white"></i>
+              </div>
+              <h3 class="font-display text-2xl font-bold text-gray-900">Store Location</h3>
+            </div>
+            
             <div class="space-y-6">
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Address</h4>
-                <p class="text-gray-700">
+                <h4 class="font-bold text-gray-900 mb-3 text-lg">Address</h4>
+                <p class="text-gray-700 text-lg leading-relaxed">
                   96 Belmore Road<br>
                   Randwick, NSW 2031<br>
                   Sydney, Australia
                 </p>
               </div>
               
+              <div class="section-divider"></div>
+              
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Opening Hours</h4>
-                <div class="space-y-2 text-gray-700">
-                  <div class="flex justify-between">
-                    <span>Monday - Sunday:</span>
-                    <span class="font-semibold text-primary">8:00 AM - 10:30 PM</span>
+                <h4 class="font-bold text-gray-900 mb-3 text-lg">Opening Hours</h4>
+                <div class="space-y-3">
+                  <div class="flex justify-between items-center text-gray-700">
+                    <span class="font-medium">Monday - Sunday:</span>
+                    <span class="font-bold text-primary text-lg">8:00 AM - 10:30 PM</span>
                   </div>
-                  <p class="text-sm text-gray-600 mt-2">Open 7 days a week including public holidays</p>
+                  <p class="text-sm text-gray-600 bg-gold/10 p-3 rounded-lg">
+                    <i data-feather="info" class="w-4 h-4 inline mr-2"></i>
+                    Open 7 days a week including public holidays
+                  </p>
                 </div>
               </div>
               
-              <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Contact</h4>
-                <div class="space-y-2">
-                  <a href="tel:+61405775232" class="flex items-center text-primary hover:text-secondary transition">
-                    <i data-feather="phone" class="w-5 h-5 mr-2"></i>
-                    <span class="font-semibold">0405 775 232</span>
-                  </a>
-                  <p class="text-gray-700 text-sm">Call us for product availability and inquiries</p>
-                </div>
-              </div>
+              <div class="section-divider"></div>
               
               <div>
-                <h4 class="font-semibold text-gray-900 mb-2">Getting Here</h4>
-                <ul class="space-y-2 text-gray-700 text-sm">
-                  <li class="flex items-start">
-                    <i data-feather="check-circle" class="w-5 h-5 text-gold mr-2 flex-shrink-0 mt-0.5"></i>
+                <h4 class="font-bold text-gray-900 mb-3 text-lg">Contact</h4>
+                <a href="tel:+61405775232" class="flex items-center space-x-3 text-primary hover:text-secondary transition group">
+                  <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition">
+                    <i data-feather="phone" class="w-6 h-6"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-2xl">0405 775 232</div>
+                    <div class="text-sm text-gray-600">Call us anytime</div>
+                  </div>
+                </a>
+              </div>
+              
+              <div class="section-divider"></div>
+              
+              <div>
+                <h4 class="font-bold text-gray-900 mb-3 text-lg">Getting Here</h4>
+                <ul class="space-y-3">
+                  <li class="flex items-start space-x-3 text-gray-700">
+                    <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <i data-feather="check" class="w-4 h-4 text-gold"></i>
+                    </div>
                     <span>Street parking available on Belmore Road</span>
                   </li>
-                  <li class="flex items-start">
-                    <i data-feather="check-circle" class="w-5 h-5 text-gold mr-2 flex-shrink-0 mt-0.5"></i>
+                  <li class="flex items-start space-x-3 text-gray-700">
+                    <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <i data-feather="check" class="w-4 h-4 text-gold"></i>
+                    </div>
                     <span>5-minute walk from Randwick Bus Interchange</span>
                   </li>
-                  <li class="flex items-start">
-                    <i data-feather="check-circle" class="w-5 h-5 text-gold mr-2 flex-shrink-0 mt-0.5"></i>
+                  <li class="flex items-start space-x-3 text-gray-700">
+                    <div class="w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <i data-feather="check" class="w-4 h-4 text-gold"></i>
+                    </div>
                     <span>Close to UNSW and Prince of Wales Hospital</span>
                   </li>
                 </ul>
@@ -560,18 +1140,18 @@
             </div>
           </div>
           
-          <div class="bg-gradient-to-br from-primary to-secondary text-white rounded-2xl shadow-lg p-8">
-            <h3 class="heading-font text-2xl font-bold mb-4">Need Directions?</h3>
-            <p class="mb-6">Call us and we'll help guide you to our store</p>
-            <a href="tel:+61405775232" class="inline-block bg-white text-gray-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
-              <i data-feather="phone" class="w-5 h-5 inline mr-2"></i>
-              Call Now
+          <div class="bg-gradient-to-br from-primary to-secondary text-white rounded-3xl shadow-xl p-8">
+            <h3 class="font-display text-2xl font-bold mb-4">Need Directions?</h3>
+            <p class="mb-6 text-lg opacity-90">Call us and we'll help guide you to our store</p>
+            <a href="tel:+61405775232" class="inline-flex items-center space-x-3 bg-white text-darkBrown px-8 py-4 rounded-full font-bold text-lg hover:bg-cream transition-all btn-premium">
+              <i data-feather="phone" class="w-5 h-5"></i>
+              <span>Call Now</span>
             </a>
           </div>
         </div>
         
-        <div>
-          <div class="bg-white rounded-2xl shadow-lg overflow-hidden h-full min-h-[600px]">
+        <div class="reveal-right">
+          <div class="premium-card rounded-3xl overflow-hidden shadow-2xl h-full min-h-[700px] relative">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.8447891234567!2d151.2395!3d-33.9137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDU0JzQ5LjMiUyAxNTHCsDE0JzMwLjEiRQ!5e0!3m2!1sen!2sau!4v1234567890"
               width="100%"
@@ -580,7 +1160,8 @@
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
-              title="Three Brothers Tobacco Shop Location Map - 96 Belmore Road Randwick NSW">
+              title="Three Brothers Tobacco Shop Location Map - 96 Belmore Road Randwick NSW"
+              class="absolute inset-0">
             </iframe>
           </div>
         </div>
@@ -589,85 +1170,88 @@
   </section>
 
   <!-- FAQ Section -->
-  <section class="py-20 bg-white">
+  <section class="py-24 bg-white">
     <div class="container mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="heading-font text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
+      <div class="text-center mb-20 reveal">
+        <span class="inline-block text-primary font-semibold text-sm uppercase tracking-wider mb-4">FAQ</span>
+        <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+          Frequently Asked <span class="gradient-text">Questions</span>
         </h2>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
           Common questions about our tobacco shop and products
         </p>
       </div>
       
       <div class="max-w-4xl mx-auto space-y-6">
-        <details class="bg-gray-50 rounded-xl p-6 cursor-pointer hover:bg-gray-100 transition">
-          <summary class="font-semibold text-lg text-gray-900 flex justify-between items-center">
-            What types of cigars do you sell?
-            <i data-feather="chevron-down" class="w-5 h-5 text-primary"></i>
+        <details class="premium-card rounded-2xl p-6 cursor-pointer group reveal stagger-1" open>
+          <summary class="font-bold text-lg text-gray-900 flex justify-between items-center list-none">
+            <span>What types of cigars do you sell?</span>
+            <div class="w-8 h-8 bg-gold/20 rounded-full flex items-center justify-center group-open:rotate-180 transition-transform">
+              <i data-feather="chevron-down" class="w-5 h-5 text-primary"></i>
+            </div>
           </summary>
-          <p class="mt-4 text-gray-700 leading-relaxed">
+          <p class="mt-4 text-gray-700 leading-relaxed pl-4 border-l-4 border-gold">
             We offer a comprehensive selection of premium cigars including Cuban cigars, Dominican cigars, Nicaraguan cigars, and Honduran cigars. Our collection features popular brands like Cohiba, Montecristo, Romeo y Julieta, Arturo Fuente, Padron, and many more. We also stock limited edition cigars and specialty blends for collectors and enthusiasts.
           </p>
         </details>
         
-        <details class="bg-gray-50 rounded-xl p-6 cursor-pointer hover:bg-gray-100 transition">
-          <summary class="font-semibold text-lg text-gray-900 flex justify-between items-center">
-            Do you have pipe tobacco?
-            <i data-feather="chevron-down" class="w-5 h-5 text-primary"></i>
+        <details class="premium-card rounded-2xl p-6 cursor-pointer group reveal stagger-2">
+          <summary class="font-bold text-lg text-gray-900 flex justify-between items-center list-none">
+            <span>Do you have pipe tobacco?</span>
+            <div class="w-8 h-8 bg-gold/20 rounded-full flex items-center justify-center group-open:rotate-180 transition-transform">
+              <i data-feather="chevron-down" class="w-5 h-5 text-primary"></i>
+            </div>
           </summary>
-          <p class="mt-4 text-gray-700 leading-relaxed">
+          <p class="mt-4 text-gray-700 leading-relaxed pl-4 border-l-4 border-gold">
             Yes! We carry an extensive range of pipe tobacco including English blends, aromatic tobacco, Virginia tobacco, Burley tobacco, and specialty house blends. Whether you prefer traditional English mixtures or aromatic flavored tobacco, we have options for every pipe smoker's taste.
           </p>
         </details>
         
-        <details class="bg-gray-50 rounded-xl p-6 cursor-pointer hover:bg-gray-100 transition">
-          <summary class="font-semibold text-lg text-gray-900 flex justify-between items-center">
-            What smoking accessories do you stock?
-            <i data-feather="chevron-down" class="w-5 h-5 text-primary"></i>
+        <details class="premium-card rounded-2xl p-6 cursor-pointer group reveal stagger-3">
+          <summary class="font-bold text-lg text-gray-900 flex justify-between items-center list-none">
+            <span>What smoking accessories do you stock?</span>
+            <div class="w-8 h-8 bg-gold/20 rounded-full flex items-center justify-center group-open:rotate-180 transition-transform">
+              <i data-feather="chevron-down" class="w-5 h-5 text-primary"></i>
+            </div>
           </summary>
-          <p class="mt-4 text-gray-700 leading-relaxed">
+          <p class="mt-4 text-gray-700 leading-relaxed pl-4 border-l-4 border-gold">
             Our tobacco shop carries a complete range of smoking accessories including cigar cutters, cigar lighters, humidors, cigar cases, pipes, pipe cleaners, ashtrays, rolling papers, filters, rolling machines, and more. We stock both budget-friendly options and premium luxury accessories.
           </p>
         </details>
         
-        <details class="bg-gray-50 rounded-xl p-6 cursor-pointer hover:bg-gray-100 transition">
-          <summary class="font-semibold text-lg text-gray-900 flex justify-between items-center">
-            Are your products authentic?
-            <i data-feather="chevron-down" class="w-5 h-5 text-primary"></i>
+        <details class="premium-card rounded-2xl p-6 cursor-pointer group reveal stagger-4">
+          <summary class="font-bold text-lg text-gray-900 flex justify-between items-center list-none">
+            <span>Are your products authentic?</span>
+            <div class="w-8 h-8 bg-gold/20 rounded-full flex items-center justify-center group-open:rotate-180 transition-transform">
+              <i data-feather="chevron-down" class="w-5 h-5 text-primary"></i>
+            </div>
           </summary>
-          <p class="mt-4 text-gray-700 leading-relaxed">
+          <p class="mt-4 text-gray-700 leading-relaxed pl-4 border-l-4 border-gold">
             Absolutely! All our tobacco products are 100% authentic and sourced directly from authorized distributors and manufacturers. We guarantee the authenticity of every cigar, tobacco product, and accessory we sell. As a licensed tobacco dealer in NSW, we maintain the highest standards of quality and authenticity.
           </p>
         </details>
         
-        <details class="bg-gray-50 rounded-xl p-6 cursor-pointer hover:bg-gray-100 transition">
-          <summary class="font-semibold text-lg text-gray-900 flex justify-between items-center">
-            What are your store hours?
-            <i data-feather="chevron-down" class="w-5 h-5 text-primary"></i>
+        <details class="premium-card rounded-2xl p-6 cursor-pointer group reveal stagger-5">
+          <summary class="font-bold text-lg text-gray-900 flex justify-between items-center list-none">
+            <span>What are your store hours?</span>
+            <div class="w-8 h-8 bg-gold/20 rounded-full flex items-center justify-center group-open:rotate-180 transition-transform">
+              <i data-feather="chevron-down" class="w-5 h-5 text-primary"></i>
+            </div>
           </summary>
-          <p class="mt-4 text-gray-700 leading-relaxed">
+          <p class="mt-4 text-gray-700 leading-relaxed pl-4 border-l-4 border-gold">
             Three Brothers Tobacco Shop is open 7 days a week from 8:00 AM to 10:30 PM, including public holidays. We're conveniently located at 96 Belmore Road, Randwick NSW 2031. For any inquiries, call us at 0405 775 232.
           </p>
         </details>
         
-        <details class="bg-gray-50 rounded-xl p-6 cursor-pointer hover:bg-gray-100 transition">
-          <summary class="font-semibold text-lg text-gray-900 flex justify-between items-center">
-            Do you offer advice for beginners?
-            <i data-feather="chevron-down" class="w-5 h-5 text-primary"></i>
+        <details class="premium-card rounded-2xl p-6 cursor-pointer group reveal stagger-6">
+          <summary class="font-bold text-lg text-gray-900 flex justify-between items-center list-none">
+            <span>Do you offer advice for beginners?</span>
+            <div class="w-8 h-8 bg-gold/20 rounded-full flex items-center justify-center group-open:rotate-180 transition-transform">
+              <i data-feather="chevron-down" class="w-5 h-5 text-primary"></i>
+            </div>
           </summary>
-          <p class="mt-4 text-gray-700 leading-relaxed">
+          <p class="mt-4 text-gray-700 leading-relaxed pl-4 border-l-4 border-gold">
             Yes! Our experienced staff is always happy to help beginners choose the right cigars, pipe tobacco, or smoking accessories. Whether you're new to cigar smoking or pipe smoking, we'll guide you through our selection and help you find products that match your preferences and budget. Visit our store for personalized recommendations.
-          </p>
-        </details>
-        
-        <details class="bg-gray-50 rounded-xl p-6 cursor-pointer hover:bg-gray-100 transition">
-          <summary class="font-semibold text-lg text-gray-900 flex justify-between items-center">
-            Is parking available?
-            <i data-feather="chevron-down" class="w-5 h-5 text-primary"></i>
-          </summary>
-          <p class="mt-4 text-gray-700 leading-relaxed">
-            Yes, street parking is available on Belmore Road and surrounding streets. Our tobacco shop is also easily accessible by public transport - we're just a 5-minute walk from Randwick Bus Interchange and close to UNSW and Prince of Wales Hospital.
           </p>
         </details>
       </div>
@@ -675,81 +1259,128 @@
   </section>
 
   <!-- Contact CTA Section -->
-  <section id="contact" class="py-20 bg-gradient-to-br from-primary to-secondary text-white">
-    <div class="container mx-auto px-4 sm:px-6 text-center">
-      <h2 class="heading-font text-4xl sm:text-5xl font-bold mb-6">
-        Visit Us Today
-      </h2>
-      <p class="text-xl mb-8 max-w-2xl mx-auto">
-        Experience Randwick's finest tobacco shop. Premium cigars, pipe tobacco, and smoking accessories await you.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="tel:+61405775232" class="bg-white text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition text-lg inline-flex items-center justify-center">
-          <i data-feather="phone" class="w-5 h-5 mr-2"></i>
-          Call 0405 775 232
-        </a>
-        <a href="https://www.google.com/maps/dir//96+Belmore+Road+Randwick+NSW+2031" target="_blank" rel="noopener noreferrer" class="bg-gold text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-500 transition text-lg inline-flex items-center justify-center">
-          <i data-feather="navigation" class="w-5 h-5 mr-2"></i>
-          Get Directions
-        </a>
+  <section id="contact" class="py-24 bg-gradient-to-br from-primary via-secondary to-darkBrown text-white relative overflow-hidden">
+    <!-- Animated Background -->
+    <div class="absolute inset-0">
+      <div class="absolute w-96 h-96 bg-gold/10 rounded-full blur-3xl top-1/4 left-1/4 animate-float"></div>
+      <div class="absolute w-96 h-96 bg-white/5 rounded-full blur-3xl bottom-1/4 right-1/4 animate-float" style="animation-delay: 1s;"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 sm:px-6 text-center relative z-10">
+      <div class="max-w-4xl mx-auto reveal">
+        <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md text-white px-6 py-2 rounded-full mb-8">
+          <i data-feather="map-pin" class="w-4 h-4"></i>
+          <span class="text-sm font-semibold">Visit Us Today</span>
+        </div>
+        
+        <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+          Experience Premium Quality
+        </h2>
+        <p class="text-xl sm:text-2xl mb-12 max-w-2xl mx-auto opacity-90 leading-relaxed">
+          Visit Randwick's finest tobacco shop. Premium cigars, pipe tobacco, and smoking accessories await you.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+          <a href="tel:+61405775232" class="group bg-white text-darkBrown px-10 py-5 rounded-full font-bold text-lg btn-premium hover:bg-cream transition-all inline-flex items-center justify-center space-x-3">
+            <i data-feather="phone" class="w-5 h-5"></i>
+            <span>Call 0405 775 232</span>
+          </a>
+          <a href="https://www.google.com/maps/dir//96+Belmore+Road+Randwick+NSW+2031" target="_blank" rel="noopener noreferrer" class="group glass text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white/20 transition-all inline-flex items-center justify-center space-x-3">
+            <i data-feather="navigation" class="w-5 h-5"></i>
+            <span>Get Directions</span>
+          </a>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+          <div class="glass rounded-xl p-6">
+            <i data-feather="clock" class="w-8 h-8 text-gold mx-auto mb-3"></i>
+            <p class="font-semibold mb-1">Open Daily</p>
+            <p class="text-sm opacity-80">8AM - 10:30PM</p>
+          </div>
+          <div class="glass rounded-xl p-6">
+            <i data-feather="map-pin" class="w-8 h-8 text-gold mx-auto mb-3"></i>
+            <p class="font-semibold mb-1">Randwick</p>
+            <p class="text-sm opacity-80">96 Belmore Road</p>
+          </div>
+          <div class="glass rounded-xl p-6">
+            <i data-feather="star" class="w-8 h-8 text-gold mx-auto mb-3 fill-current"></i>
+            <p class="font-semibold mb-1">4.8 Rating</p>
+            <p class="text-sm opacity-80">127 Reviews</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-12">
+  <footer class="bg-gradient-to-br from-darkBrown to-accent text-white py-16">
     <div class="container mx-auto px-4 sm:px-6">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
         <div>
-          <div class="flex items-center space-x-3 mb-4">
-            <img src="logo.png" alt="Three Brothers Tobacco Logo" class="w-10 h-10 rounded-full" width="40" height="40">
-            <h3 class="heading-font text-xl font-bold">Three Brothers Tobacco</h3>
+          <div class="flex items-center space-x-3 mb-6">
+            <img src="logo.png" alt="Three Brothers Tobacco Logo" class="w-12 h-12 rounded-full ring-2 ring-gold/30" width="48" height="48">
+            <h3 class="font-display text-2xl font-bold">Three Brothers</h3>
           </div>
-          <p class="text-gray-400 mb-4">
-            Randwick's premier tobacco shop since 1985. Premium cigars, pipe tobacco, and smoking accessories.
+          <p class="text-gray-300 mb-6 leading-relaxed">
+            Randwick's premier tobacco shop offering premium cigars, pipe tobacco, and smoking accessories.
           </p>
-          <p class="text-sm text-gray-500">
+          <p class="text-sm text-gray-400">
             Licensed tobacco dealer in NSW, Australia
           </p>
         </div>
         
         <div>
-          <h4 class="heading-font text-lg font-semibold mb-4">Quick Links</h4>
-          <ul class="space-y-2">
-            <li><a href="#home" class="text-gray-400 hover:text-gold transition">Home</a></li>
-            <li><a href="#products" class="text-gray-400 hover:text-gold transition">Products</a></li>
-            <li><a href="#about" class="text-gray-400 hover:text-gold transition">About Us</a></li>
-            <li><a href="#location" class="text-gray-400 hover:text-gold transition">Location</a></li>
-            <li><a href="#contact" class="text-gray-400 hover:text-gold transition">Contact</a></li>
+          <h4 class="font-display text-xl font-bold mb-6">Quick Links</h4>
+          <ul class="space-y-3">
+            <li><a href="#home" class="text-gray-300 hover:text-gold transition flex items-center space-x-2">
+              <i data-feather="chevron-right" class="w-4 h-4"></i>
+              <span>Home</span>
+            </a></li>
+            <li><a href="#products" class="text-gray-300 hover:text-gold transition flex items-center space-x-2">
+              <i data-feather="chevron-right" class="w-4 h-4"></i>
+              <span>Products</span>
+            </a></li>
+            <li><a href="#about" class="text-gray-300 hover:text-gold transition flex items-center space-x-2">
+              <i data-feather="chevron-right" class="w-4 h-4"></i>
+              <span>About Us</span>
+            </a></li>
+            <li><a href="#location" class="text-gray-300 hover:text-gold transition flex items-center space-x-2">
+              <i data-feather="chevron-right" class="w-4 h-4"></i>
+              <span>Location</span>
+            </a></li>
+            <li><a href="#contact" class="text-gray-300 hover:text-gold transition flex items-center space-x-2">
+              <i data-feather="chevron-right" class="w-4 h-4"></i>
+              <span>Contact</span>
+            </a></li>
           </ul>
         </div>
         
         <div>
-          <h4 class="heading-font text-lg font-semibold mb-4">Contact Info</h4>
-          <div class="space-y-3">
-            <div class="flex items-start">
-              <i data-feather="map-pin" class="w-5 h-5 text-gold mr-3 flex-shrink-0 mt-1"></i>
-              <span class="text-gray-400">96 Belmore Road<br>Randwick NSW 2031</span>
+          <h4 class="font-display text-xl font-bold mb-6">Contact Info</h4>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <i data-feather="map-pin" class="w-5 h-5 text-gold flex-shrink-0 mt-1"></i>
+              <span class="text-gray-300">96 Belmore Road<br>Randwick NSW 2031</span>
             </div>
-            <div class="flex items-center">
-              <i data-feather="phone" class="w-5 h-5 text-gold mr-3"></i>
-              <a href="tel:+61405775232" class="text-gray-400 hover:text-gold transition">0405 775 232</a>
+            <div class="flex items-center space-x-3">
+              <i data-feather="phone" class="w-5 h-5 text-gold"></i>
+              <a href="tel:+61405775232" class="text-gray-300 hover:text-gold transition">0405 775 232</a>
             </div>
-            <div class="flex items-center">
-              <i data-feather="clock" class="w-5 h-5 text-gold mr-3"></i>
-              <span class="text-gray-400">Open Daily 8AM-10:30PM</span>
+            <div class="flex items-center space-x-3">
+              <i data-feather="clock" class="w-5 h-5 text-gold"></i>
+              <span class="text-gray-300">Daily 8AM-10:30PM</span>
             </div>
           </div>
         </div>
       </div>
       
-      <div class="border-t border-gray-800 pt-8">
+      <div class="border-t border-gray-700 pt-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center md:text-left">
-          <p class="text-gray-500 text-sm">
+          <p class="text-gray-400 text-sm">
             &copy; 2025 Three Brothers Tobacco Shop. All rights reserved.
           </p>
-          <p class="text-gray-500 text-sm md:text-right">
-            <strong>Health Warning:</strong> Tobacco smoking is harmful to your health
+          <p class="text-gray-400 text-sm md:text-right">
+            <strong class="text-gold">Health Warning:</strong> Tobacco smoking is harmful to your health
           </p>
         </div>
       </div>
@@ -757,28 +1388,82 @@
   </footer>
 
   <script>
+    // Initialize Feather Icons
     feather.replace();
     
-    // Smooth scroll for navigation links
+    // Scroll Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('scrollProgress').style.width = scrolled + '%';
+    });
+    
+    // Smooth Scroll for Navigation Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Close mobile menu if open
+          document.getElementById('mobileMenu').classList.remove('active');
         }
       });
     });
     
-    // Header background on scroll
-    const header = document.querySelector('header');
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMobileMenu = document.getElementById('closeMobileMenu');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+    });
+    
+    closeMobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+    });
+    
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+    });
+    
+    // Header Background on Scroll
+    const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 100) {
-        header.classList.add('shadow-lg');
+        header.classList.add('shadow-2xl');
       } else {
-        header.classList.remove('shadow-lg');
+        header.classList.remove('shadow-2xl');
       }
     });
+    
+    // Intersection Observer for Reveal Animations
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+    
+    revealElements.forEach(element => {
+      revealObserver.observe(element);
+    });
+    
+    // Reinitialize Feather Icons after DOM changes
+    setTimeout(() => {
+      feather.replace();
+    }, 100);
   </script>
 </body>
 </html>
