@@ -56,7 +56,7 @@
 - [x] Test loading speeds
 
 ## 6. Deployment
-- [ ] Final testing on local server
-- [ ] Commit all changes
-- [ ] Push to GitHub repository
-- [ ] Verify deployment success
+- [x] Final testing on local server
+- [x] Commit all changes
+- [x] Push to GitHub repository
+- [x] Verify deployment success
